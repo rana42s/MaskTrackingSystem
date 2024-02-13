@@ -16,7 +16,7 @@ namespace Business.Concrete
 
         }
 
-        public List<Person> GetList()
+        public List <Person> GetList()
         {
             return null;
         }
@@ -24,7 +24,9 @@ namespace Business.Concrete
         public bool CheckPerson(Person person)
         {
             KPSPublicSoapClient client = new KPSPublicSoapClient(KPSPublicSoapClient.EndpointConfiguration.KPSPublicSoap);
-            return client.TCKimlikNoDogrulaAsync(new TCKimlikNoDogrulaRequest(TCKimlikNoDogrulaRequestBody(person.NationalIdentity,person.FirstName,person.LastName,person.DateOfBirthYear))).Result.Body.TCKilmlikDogrulaResult;
+            return client.TCKimlikNoDogrulaAsync(person.NationalIdentity, person.FirstName, person.LastName, person.DateOfBirthYear)
+                .Result.Body.TCKimlikNoDogrulaResult;
+
         }
 
     }
